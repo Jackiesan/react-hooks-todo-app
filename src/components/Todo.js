@@ -39,6 +39,9 @@ import React, { useState, useEffect } from 'react';
     }
 
     function Todo() {
+        // useState is our State Hook.
+        // Single argument to useState is the initial state.
+        // Initial state only used during the first render
         const [tasks, setTasks] = useState([
             {
                 title: "Grab some Pizza",
@@ -56,10 +59,15 @@ import React, { useState, useEffect } from 'react';
 
         const [tasksRemaining, setTasksRemaining] = useState(0);
 
+
+        // Effects run after every completed render
+        // We can also fire them only when certain values have changed
         useEffect(() => { setTasksRemaining(tasks.filter(task => !task.completed).length) });
 
         const addTask = title => {
             const newTasks = [...tasks, { title, completed: false }];
+            // Accepts new state
+            // enqueues a re-render of the component
             setTasks(newTasks);
         };
 
